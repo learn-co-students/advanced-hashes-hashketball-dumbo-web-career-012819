@@ -121,9 +121,7 @@ game_hash
 
 def num_points_scored(player)
   game_hash.each do |location,team|
-
     if team[:players][player]
-
       return team[:players][player][:points].to_i
 
   end
@@ -132,9 +130,7 @@ end
 
 def shoe_size(player)
   game_hash.each do |location,team|
-#binding.pry
     if team[:players][player]
-
       return team[:players][player][:shoe].to_i
 
   end
@@ -148,10 +144,7 @@ def team_colors(team)
   else
     return game_hash[:away][:colors]
 
-
-
-#binding.pry
-end
+ end
 end
 
 def team_names
@@ -177,34 +170,27 @@ end
 end
 
 def player_stats(guy)
-  #binding.pry
-if game_hash[:home][:players][guy]
-  #binding.pry
-return game_hash[:home][:players][guy]
-#binding.pry
-else
-game_hash[:away][:players][guy]
-end
+   if game_hash[:home][:players][guy]
+      return game_hash[:home][:players][guy]
+
+   else
+      game_hash[:away][:players][guy]
+ end
 end
 
 def big_shoe_rebounds
   home_shoes = []
 game_hash.each do |location,attributes|
-  #binding.pry
   attributes[:players].each do |guys,size|
     home_shoes << size[:shoe]
   end
 end
-rebound_array = []
-   game_hash.map do |location,attributes|
-     #binding.pry
-     attributes[:players].map do |guys,size|
-       #binding.pry
-       if size[:shoe] == home_shoes.max
+game_hash.map do |location,attributes|
+   attributes[:players].map do |guys,size|
+     if size[:shoe] == home_shoes.max
          return size[:rebounds]
-      #binding.pry
+
    end
   end
  end
 end
-#binding.pry
