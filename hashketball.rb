@@ -109,3 +109,59 @@ def big_shoe_rebounds
 
   return rebounds
 end
+
+def most_points_scored
+  highest_points = nil
+  top_player = nil
+
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player, stats|
+      current_points = stats[:points]
+
+      if highest_points == nil || current_points > highest_points
+        highest_points = current_points
+        top_player = player
+      end
+    end
+  end
+
+  return top_player
+end
+
+def winning_team
+  home_team = Hash.new(0)
+  away_team = Hash.new(0)
+
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player, stats|
+      points = stats[:points]
+      team_name = team_data[:team_name]
+
+      if location.to_s == "home"
+        home_team[team_name] += points
+      elsif location.to_s == "away"
+        away_team[team_name] += points
+      end
+    end
+  end
+
+  if home_team.values[0] > away_team.values[0]
+    return home_team.keys[0]
+  else
+    return away_team.keys[0]
+  end
+end
+
+def player_with_longest_name
+  longest_name = nil
+
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |player, stats|
+      if longest_name == nil || player.length > longest_name.length
+        longest_name = player
+      end
+    end
+  end
+
+  return longest_name
+end
