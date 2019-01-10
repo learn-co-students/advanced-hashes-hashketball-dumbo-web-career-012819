@@ -117,8 +117,36 @@ def game_hash
 }
 end
 
-def num_points_scored(player)
-    
+
+def num_points_scored(name)
+  
+end
+
+def shoe_size(name)
+
+end
+
+def team_colors(tname)
+  
+end
+
+def team_names
+  array = []
+  array << game_hash[:home][:team_name]
+  array << game_hash[:away][:team_name]
+  array
+end
+
+def player_numbers(tname)
+  
+end
+
+def player_stats(name)
+  
+end
+
+def big_shoe_rebounds
+  
 end
 
 
