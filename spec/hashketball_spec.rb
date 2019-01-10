@@ -1,26 +1,14 @@
 require 'spec_helper'
+require 'pry'
 
 describe 'hashketball' do
 
   describe '#game_hash' do
-    let(:top_level_keys) { [:home, :away] }
-    let(:team_level_keys) { [:team_name, :colors, :players] }
 
-    it 'returns a hash' do
+    it 'should return a hash' do
       expect(game_hash).to be_a(Hash)
     end
 
-    it 'returns the correct top-level keys' do
-      top_level_keys.each do |key|
-        expect(game_hash.keys).to include(key)
-      end
-    end
-
-    it 'returns the correct team-level keys' do
-      team_level_keys.each do |key|
-        expect(game_hash.values.first.keys).to include(key)
-      end
-    end
   end
 
   describe '#num_points_scored' do
@@ -60,10 +48,21 @@ describe 'hashketball' do
   describe '#team_colors' do
 
     it 'knows the Brooklyn Nets colors are Black and White' do
-      expect(team_colors("Brooklyn Nets")).to contain_exactly("Black", "White")
-      expect(team_colors("Charlotte Hornets")).to contain_exactly("Turquoise", "Purple")
+      brooklyn_colors = team_colors("Brooklyn Nets")
+      expect(brooklyn_colors.size).to eq(2)
+      brooklyn_colors.each do |color|
+        expect(["Black", "White"]).to include(color)
       end
     end
+
+    it 'knows the Charlotte Hornets colors are Turquoise and Purple' do
+      charlotte_colors = team_colors("Charlotte Hornets")
+      expect(charlotte_colors.size).to eq(2)
+      charlotte_colors.each do |color|
+        expect(["Turquoise", "Purple"]).to include(color)
+      end
+    end
+  end
 
   describe '#team_names' do
 
@@ -105,7 +104,7 @@ describe 'hashketball' do
     }
 
     let(:bismak_stats) {
-      {
+      { 
         :number => 0,
         :shoe => 16,
         :points => 12,
@@ -118,7 +117,7 @@ describe 'hashketball' do
     }
 
     let(:desagna_stats) {
-      {
+      { 
         :number => 2,
         :shoe => 14,
         :points => 24,
@@ -131,7 +130,7 @@ describe 'hashketball' do
     }
 
     let(:ben_stats) {
-      {
+      { 
         :number => 8,
         :shoe => 15,
         :points => 33,
@@ -144,7 +143,7 @@ describe 'hashketball' do
     }
 
     let(:brendan_stats) {
-      {
+      { 
         :number => 33,
         :shoe => 15,
         :points => 6,
@@ -157,7 +156,7 @@ describe 'hashketball' do
     }
 
     let(:alan_stats) {
-      {
+      { 
         :number => 0,
         :shoe => 16,
         :points => 22,
@@ -170,7 +169,7 @@ describe 'hashketball' do
     }
 
     let(:reggie_stats) {
-      {
+      { 
         :number => 30,
         :shoe => 14,
         :points => 12,
@@ -183,7 +182,7 @@ describe 'hashketball' do
     }
 
     let(:brook_stats) {
-      {
+      { 
         :number => 11,
         :shoe => 17,
         :points => 17,
@@ -196,7 +195,7 @@ describe 'hashketball' do
     }
 
     let(:mason_stats) {
-      {
+      { 
         :number => 1,
         :shoe => 19,
         :points => 26,
@@ -209,7 +208,7 @@ describe 'hashketball' do
     }
 
     let(:jason_stats) {
-      {
+      { 
         :number => 31,
         :shoe => 15,
         :points => 19,
@@ -238,7 +237,7 @@ describe 'hashketball' do
 
   describe '#big_shoe_rebounds' do
 
-    it 'returns the number of rebounds of the player with the biggest shoe size' do
+    it 'returns 12 rebouds' do
       expect(big_shoe_rebounds).to eq(12)
     end
 
