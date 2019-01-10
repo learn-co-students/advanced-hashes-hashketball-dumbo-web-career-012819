@@ -119,7 +119,12 @@ end
 
 
 def num_points_scored(name)
-  
+  game_hash[:home][:players].each do |player_name, player_hash|
+      if  name == player_name
+      player_hash[2]
+    end
+    
+  end
 end
 
 def shoe_size(name)
@@ -142,11 +147,12 @@ def player_numbers(tname)
 end
 
 def player_stats(name)
-  
+
 end
 
 def big_shoe_rebounds
-  
+  big_foot = game_hash[:home][:players].max_by{|i, s| s.fetch(:shoe)}[1]
+  big_foot.fetch(:rebounds)
 end
 
 
