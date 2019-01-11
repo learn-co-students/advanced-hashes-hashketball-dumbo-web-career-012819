@@ -120,19 +120,37 @@ end
 
 def num_points_scored(name)
   game_hash[:home][:players].each do |player_name, player_hash|
-      if  name == player_name
-      player_hash[2]
+    if name == player_name
+      return player_hash[:points]
     end
-    
+  end
+  game_hash[:away][:players].each do |player_name, player_hash|
+    if name == player_name
+      return player_hash[:points]
+    end
   end
 end
 
-def shoe_size(name)
 
+def shoe_size(name)
+  game_hash[:home][:players].each do |player_name, player_hash|
+    if name == player_name
+      return player_hash[:shoe]
+    end
+  end
+  game_hash[:away][:players].each do |player_name, player_hash|
+    if name == player_name
+      return player_hash[:shoe]
+    end
+  end
 end
 
 def team_colors(tname)
-  
+  if tname == game_hash[:home][:team_name]
+    return game_hash[:home][:colors]
+  elsif tname == game_hash[:away][:team_name]
+    return game_hash[:away][:colors]
+  end
 end
 
 def team_names
@@ -143,15 +161,37 @@ def team_names
 end
 
 def player_numbers(tname)
-  
+  home_num = []
+  away_num = []
+  if tname == game_hash[:home][:team_name]
+    game_hash[:home][:players].each do |player_name, player_hash|
+      home_num << player_hash[:number]
+      return home_num
+    end
+  end
+  if tname == game_hash[:away][:team_name]
+    game_hash[:away][:players].each do |player_name, player_hash|
+      away_num << player_hash[:number]
+      return away_num
+    end
+  end
 end
-
+player_numbers("Brooklyn Nets")
 def player_stats(name)
-
+  game_hash[:home][:players].each do |player_name, player_hash|
+    if name == player_name
+      return player_hash
+    end
+  end
+  game_hash[:away][:players].each do |player_name, player_hash|
+    if name == player_name
+      return player_hash
+    end
+  end
 end
 
 def big_shoe_rebounds
-  big_foot = game_hash[:home][:players].max_by{|i, s| s.fetch(:shoe)}[1]
+  big_foot = game_hash[:home][:players].max_by{|player_name, player_hash| player_hash.fetch(:shoe)}[1]
   big_foot.fetch(:rebounds)
 end
 
