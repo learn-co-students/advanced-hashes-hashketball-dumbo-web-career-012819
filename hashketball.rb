@@ -166,15 +166,15 @@ def player_numbers(tname)
   if tname == game_hash[:home][:team_name]
     game_hash[:home][:players].each do |player_name, player_hash|
       home_num << player_hash[:number]
+      return home_num
     end
-    home_num
   end
   if tname == game_hash[:away][:team_name]
     game_hash[:away][:players].each do |player_name, player_hash|
       away_num << player_hash[:number]
+      return away_num
     end
   end
-  away_num
 end
 player_numbers("Brooklyn Nets")
 def player_stats(name)
