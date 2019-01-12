@@ -1,0 +1,32 @@
+
+[1mFrom:[0m /home/brave-programmer-8559/advanced-hashes-hashketball-dumbo-web-career-012819/hashketball.rb @ line 201 Object#big_shoe_rebounds:
+
+    [1;34m191[0m: [32mdef[0m [1;34mbig_shoe_rebounds[0m
+    [1;34m192[0m:   player_largest_shoes = [31m[1;31m"[0m[31m[1;31m"[0m[31m[0m
+    [1;34m193[0m:   shoe_size_home = [1;34m0[0m
+    [1;34m194[0m:   shoe_size_away = [1;34m0[0m
+    [1;34m195[0m:   player_largest_home = [31m[1;31m"[0m[31m[1;31m"[0m[31m[0m
+    [1;34m196[0m:   player_largest_away = [31m[1;31m"[0m[31m[1;31m"[0m[31m[0m
+    [1;34m197[0m:   game_hash[[33m:home[0m][[33m:players[0m].each [32mdo[0m |player, values|
+    [1;34m198[0m:     [32mif[0m values[[33m:shoe[0m] > shoe_size_home
+    [1;34m199[0m:       shoe_size_home = values[[33m:shoe[0m]
+    [1;34m200[0m:       player_largest_home = player
+ => [1;34m201[0m:       binding.pry
+    [1;34m202[0m:     [32mend[0m
+    [1;34m203[0m:   [32mend[0m
+    [1;34m204[0m:   game_hash[[33m:away[0m][[33m:players[0m].each [32mdo[0m |player, values|
+    [1;34m205[0m:     [32mif[0m values[[33m:shoe[0m] > shoe_size_away
+    [1;34m206[0m:       shoe_size_away = values[[33m:shoe[0m]
+    [1;34m207[0m:       player_largest_away = player
+    [1;34m208[0m:     [32mend[0m
+    [1;34m209[0m:   [32mend[0m
+    [1;34m210[0m:   [32mif[0m shoe_size_home > shoe_size_away
+    [1;34m211[0m:     player_largest_shoes = player_largest_home
+    [1;34m212[0m:     [32mreturn[0m game_hash[[33m:home[0m][[33m:player[0m][player_largest_shoes][[33m:rebounds[0m]
+    [1;34m213[0m:   [32melsif[0m shoe_size_away > shoe_size_home
+    [1;34m214[0m:     player_largest_shoes = player_largest_away
+    [1;34m215[0m:     [32mreturn[0m game_hash[[33m:away[0m][[33m:player[0m][player_largest_shoes][[33m:rebounds[0m]
+    [1;34m216[0m:   [32mend[0m
+    [1;34m217[0m: 
+    [1;34m218[0m: [32mend[0m
+
