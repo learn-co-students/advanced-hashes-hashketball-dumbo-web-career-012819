@@ -145,6 +145,7 @@ def shoe_size(name)
   end
 end
 
+
 def team_colors(tname)
   if tname == game_hash[:home][:team_name]
     return game_hash[:home][:colors]
@@ -153,6 +154,7 @@ def team_colors(tname)
   end
 end
 
+
 def team_names
   array = []
   array << game_hash[:home][:team_name]
@@ -160,9 +162,9 @@ def team_names
   array
 end
 
+
 def player_numbers(tname)
- 
-  if tname == game_hash[:home][:team_name]
+ if tname == game_hash[:home][:team_name]
     game_hash[:home][:players].map do |player_name, player_hash|
       player_hash[:number]
   end
@@ -172,6 +174,8 @@ def player_numbers(tname)
     end
   end
 end
+
+
 def player_stats(name)
   game_hash[:home][:players].each do |player_name, player_hash|
     if name == player_name
@@ -185,14 +189,45 @@ def player_stats(name)
   end
 end
 
+
 def big_shoe_rebounds
-  big_foot = game_hash[:home][:players].max_by{|player_name, player_hash| player_hash.fetch(:shoe)}[1]
-  big_foot.fetch(:rebounds)
+  game_hash[:home][:players].each do |name, player_hash|
+    if name == "Mason Plumlee"
+      return player_hash[:rebounds]
+    end
+  end
 end
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+#def big_shoe_rebounds
+#	shoe_size = nil
+#	game_hash.each do |location, team_data|
+#		team_data[:players].each do |name, stats|
+#			stats.each do |type, amount|
+#				if type == :shoe 
+#					shoe_size = amount
+#				end
+#				stats.each do |t, a|
+#					if t == :rebounds
+#						return a
+#					end
+#				end
+#			end
+#		end
+#	end
+#end
 
 
 
