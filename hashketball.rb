@@ -288,3 +288,94 @@ stats.each do |type, amount|
 	
 	final_answer
 =end
+
+def most_points_scored
+	points_array = []
+	game_hash.each do |location, team_data|
+		team_data[:players].each do |attribute, data|	
+			data.each do |type, amount|
+				if type == :points
+					points_array << amount
+				end 
+			end
+		end
+	end
+	game_hash.each do |l, data|
+		data[:players].each do |a, d|
+			d.each do |t, amt|
+				if t == :points && points_array.max == amt
+					return a
+				end
+			end
+		end
+	end
+end
+
+def winning_team
+	first_team_score = []
+	second_team_score = []
+	game_hash.each do |location, team_data|	
+		if team_data[:team_name] == team_names[0]
+			team_data[:players].each do |attribute, data|
+				data.each do |type, amount|
+					if type == :points
+						first_team_score << amount
+					end
+				end
+			end
+		end
+	end
+	game_hash.each do |location, team_data|	
+		if team_data[:team_name] == team_names[1]
+			team_data[:players].each do |attribute, data|
+				data.each do |type, amount|
+					if type == :points
+						second_team_score << amount
+					end
+				end
+			end
+		end
+	end
+	if first_team_score.sum > second_team_score.sum
+		team_names[0]
+	else 
+		team_names[1]
+	end
+end
+
+def player_with_longest_name
+	names_array = []
+	game_hash.each do |location, team_data|
+		team_data[:players].each do |name, data|
+			names_array << name
+		end
+	end
+	names_array.max { |a, b| a.length <=> b.length }
+end
+
+def long_name_steals_a_ton?
+	steals_array = []
+	game_hash.each do |location, team_data|
+		team_data[:players].each do |name, data|
+			data.each do |type, amount|
+				if type == :steals
+					steals_array << amount
+				end
+			end
+		end
+	end
+	game_hash.each do |location, team_data|
+		team_data[:players].each do |name, data|
+			data.each do |type, amount|
+				if steals_array.max == amount && player_with_longest_name == name
+					return true
+				end
+			end
+		end
+	end
+end
+
+
+
+
+
