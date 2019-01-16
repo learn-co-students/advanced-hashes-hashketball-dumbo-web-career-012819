@@ -193,14 +193,20 @@ end
 
 
 def player_numbers(team)
+  # sets up an empty array for jersey numbers
   numbers_on_jersey = []
+  # first iteration
   game_hash.collect do |teams, team_info|
+    # checks if value of each team name equals team passed in
     if team_info[:team_name] == team
+      # if equal then for each player on that team add the value
+      # of each number into the empty array we set up
       team_info[:players].each do |name, stats|
         numbers_on_jersey << stats[:number]
       end
     end
   end
+  # return the array full of numbers
   numbers_on_jersey
 end
 
@@ -219,10 +225,14 @@ end
 
 
 def big_shoe_rebounds
+
   big_shoe = 0
   rebounds = nil
-  game_hash.each do |where, data|
+  # first iteration over game_hash
+  game_hash.each do |placeholder, data|
+    # takes the key values of the players level
     data[:players].each do |player, stats|
+      # for each player, takes the stats
       stats.each do |key, value|
         if key == :shoe
           if value > big_shoe
@@ -234,11 +244,11 @@ def big_shoe_rebounds
       if stats.each do |key, value|
         if key == :rebounds
           rebounds = value
-        end
-      end
-    end
-  end
-  end
+        end           # closes inner if iteration statement
+      end             # closes do statement
+    end               # closes outer if iteration statement
+  end                 # closes data iteration
+  end                 # closes game_hash iteration
 rebounds
-end
+end                   # closes method
 
